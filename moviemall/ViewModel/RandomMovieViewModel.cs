@@ -8,7 +8,7 @@ namespace moviemall.ViewModel
 {
     public class RandomMovieViewModel
     {
-        public Movie mov { get; set; }
+        public Movie Mov { get; set; }
         public List<Customer> Cust { get; set; }
     }
 }

@@ -1,10 +1,35 @@
-﻿@Model moviemall.Models.Movie
+﻿@model moviemall.ViewModel.RandomMovieViewModel
 
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>
-    @ViewBag.mname
+@{ var className = (string) null;
+    if (Model.Cust.Count > 0)
+    {
+        className = "Popular";
+    }
+    else
+    {
+        className = null;
+    }
+
+}
+<h2 class=@className>
+    @Model.Mov.Name
 </h2>
+
+@if (Model.Cust.Count == 0)
+{
+    <text> No one has rented this movie before. </text>
+}
+else
+{
+    <ul>
+    @foreach (var c in Model.Cust)
+    {
+        <li>@c.Name</li>
+    }
+    </ul>
+}

@@ -40,9 +40,22 @@ namespace moviemall.Controllers
 
         public ActionResult Random()
         {
-            //var moviename = new Movie();
-            //moviename.Name = "IT follows";
-            return View();
+            var moviename = new Movie();
+            moviename.Name = "IT follows";
+
+            var customerdata = new List<Customer>
+            {
+                new Customer { Name = "Customer 1" },
+                new Customer { Name = "Customer 2" }
+            };
+
+            var VM = new RandomMovieViewModel
+            {
+                Mov = moviename,
+                Cust = customerdata
+            };
+
+            return View(VM);
         }
         public ActionResult Edit(int id)
         {
