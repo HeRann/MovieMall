@@ -68,5 +68,11 @@ namespace moviemall.Controllers
         {
             return Content(years +"/"+ months );
         }
+
+        public ActionResult Index()
+        {
+
+            return View();
+        }
     }
 }
