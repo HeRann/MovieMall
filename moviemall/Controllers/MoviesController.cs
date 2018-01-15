@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using moviemall.Models;
-using moviemall.ViewModel;
+//using moviemall.ViewModel;
 
 namespace moviemall.Controllers
 {
@@ -38,41 +38,26 @@ namespace moviemall.Controllers
         //}// It must be query string: http://localhost:57447/movies/edit?idc=1
 
 
-        public ActionResult Random()
-        {
-            var moviename = new Movie();
-            moviename.Name = "IT follows";
-
-            var customerdata = new List<Customer>
-            {
-                new Customer { Name = "John Smith" },
-                new Customer { Name = "Mary Williams" }
-            };
-
-            var VM = new RandomMovieViewModel
-            {
-                Mov = moviename,
-                Cust = customerdata
-            };
-
-            return View(VM);
-        }
-        public ActionResult Edit(int id)
-        {
-            //return Content(String.Format("Value is = {0}" , id));
-            return Content("Value is = {0}" + id);
-
-        }
-        [Route("movies/released/{years}/{months:range(1,12)}")] 
-        public ActionResult ByReleaseDate(int years, int months)
-        {
-            return Content(years +"/"+ months );
-        }
-
         public ActionResult Index()
         {
-
-            return View();
+            var moviesInIndex = getMovies();
+            return View(moviesInIndex);
         }
+
+        private IEnumerable<Movie> getMovies()
+        {
+            return new List<Movie>
+            {
+                new Movie
+                {
+                    Id =1, Name ="Wall-E"
+                },
+                new Movie
+                {
+                    Id = 2,
+                    Name ="IT Follows"
+                }
+            };
+        }            
     }
 }

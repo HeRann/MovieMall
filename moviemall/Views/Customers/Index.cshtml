@@ -1,0 +1,27 @@
+﻿@*@model IEnumerable<moviemall.Models.Customer>*@
+@model List<moviemall.Models.Customer>
+
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Customers</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>@ViewBag.Title</th>
+        <th>Membership Type</th>
+    </tr>
+    @foreach(var c in Model)
+    {
+    <tr>
+        <td>
+            @Html.ActionLink(c.Name, "Details", "Customers",new { Id = c.Id },null)
+        </td>
+        <td>
+            @c.MembershipType.Name
+        </td>
+    </tr>
+    }
+</table>
+

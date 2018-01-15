@@ -163,11 +163,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Data\App_Start\BundleConfig.cs" />
+    <Compile Include="App_Data\App_Start\FilterConfig.cs" />
+    <Compile Include="App_Data\App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Data\App_Start\RouteConfig.cs" />
+    <Compile Include="App_Data\App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -176,17 +176,70 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801142052522_InitialModel.cs" />
+    <Compile Include="Migrations\201801142052522_InitialModel.Designer.cs">
+      <DependentUpon>201801142052522_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801142120006_AddIsSubscribedToNewsletter.cs" />
+    <Compile Include="Migrations\201801142120006_AddIsSubscribedToNewsletter.Designer.cs">
+      <DependentUpon>201801142120006_AddIsSubscribedToNewsletter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801142212305_AddMembershipType.cs" />
+    <Compile Include="Migrations\201801142212305_AddMembershipType.Designer.cs">
+      <DependentUpon>201801142212305_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801142225105_AssignValuesMembershipType.cs" />
+    <Compile Include="Migrations\201801142225105_AssignValuesMembershipType.Designer.cs">
+      <DependentUpon>201801142225105_AssignValuesMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152044383_UpdateCustomerField.cs" />
+    <Compile Include="Migrations\201801152044383_UpdateCustomerField.Designer.cs">
+      <DependentUpon>201801152044383_UpdateCustomerField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152150184_AddNamePropInMembershipType.cs" />
+    <Compile Include="Migrations\201801152150184_AddNamePropInMembershipType.Designer.cs">
+      <DependentUpon>201801152150184_AddNamePropInMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152151420_RemoveNameFromMembership.cs" />
+    <Compile Include="Migrations\201801152151420_RemoveNameFromMembership.Designer.cs">
+      <DependentUpon>201801152151420_RemoveNameFromMembership.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152152359_AddNamePropInMembershipType2.cs" />
+    <Compile Include="Migrations\201801152152359_AddNamePropInMembershipType2.Designer.cs">
+      <DependentUpon>201801152152359_AddNamePropInMembershipType2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152154238_AssignValueToNameInMembershipType.cs" />
+    <Compile Include="Migrations\201801152154238_AssignValueToNameInMembershipType.Designer.cs">
+      <DependentUpon>201801152154238_AssignValueToNameInMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152232492_AssignValueToNameInMembershipType1.cs" />
+    <Compile Include="Migrations\201801152232492_AssignValueToNameInMembershipType1.Designer.cs">
+      <DependentUpon>201801152232492_AssignValueToNameInMembershipType1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152233367_AssignValueToNameInMembershipType2.cs" />
+    <Compile Include="Migrations\201801152233367_AssignValueToNameInMembershipType2.Designer.cs">
+      <DependentUpon>201801152233367_AssignValueToNameInMembershipType2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152241433_AddbirthPropInMembershipType.cs" />
+    <Compile Include="Migrations\201801152241433_AddbirthPropInMembershipType.Designer.cs">
+      <DependentUpon>201801152241433_AddbirthPropInMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801152243141_AddbirthPropInMembershipType2.cs" />
+    <Compile Include="Migrations\201801152243141_AddbirthPropInMembershipType2.Designer.cs">
+      <DependentUpon>201801152243141_AddbirthPropInMembershipType2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModel\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-cerulean.css" />
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -243,10 +296,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Customers\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -255,6 +310,47 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801142052522_InitialModel.resx">
+      <DependentUpon>201801142052522_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801142120006_AddIsSubscribedToNewsletter.resx">
+      <DependentUpon>201801142120006_AddIsSubscribedToNewsletter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801142212305_AddMembershipType.resx">
+      <DependentUpon>201801142212305_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801142225105_AssignValuesMembershipType.resx">
+      <DependentUpon>201801142225105_AssignValuesMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152044383_UpdateCustomerField.resx">
+      <DependentUpon>201801152044383_UpdateCustomerField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152150184_AddNamePropInMembershipType.resx">
+      <DependentUpon>201801152150184_AddNamePropInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152151420_RemoveNameFromMembership.resx">
+      <DependentUpon>201801152151420_RemoveNameFromMembership.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152152359_AddNamePropInMembershipType2.resx">
+      <DependentUpon>201801152152359_AddNamePropInMembershipType2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152154238_AssignValueToNameInMembershipType.resx">
+      <DependentUpon>201801152154238_AssignValueToNameInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152232492_AssignValueToNameInMembershipType1.resx">
+      <DependentUpon>201801152232492_AssignValueToNameInMembershipType1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152233367_AssignValueToNameInMembershipType2.resx">
+      <DependentUpon>201801152233367_AssignValueToNameInMembershipType2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152241433_AddbirthPropInMembershipType.resx">
+      <DependentUpon>201801152241433_AddbirthPropInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801152243141_AddbirthPropInMembershipType2.resx">
+      <DependentUpon>201801152243141_AddbirthPropInMembershipType2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
