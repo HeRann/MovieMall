@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using moviemall.Models;
+using System.Data.Entity;
 //using moviemall.ViewModel;
 
 namespace moviemall.Controllers
@@ -37,27 +38,34 @@ namespace moviemall.Controllers
 
         //}// It must be query string: http://localhost:57447/movies/edit?idc=1
 
+        private ApplicationDbContext _context;
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
 
         public ActionResult Index()
         {
-            var moviesInIndex = getMovies();
+            var moviesInIndex = _context.Movies.Include(m => m.MovieGenre).ToList();
             return View(moviesInIndex);
         }
 
-        private IEnumerable<Movie> getMovies()
-        {
-            return new List<Movie>
-            {
-                new Movie
-                {
-                    Id =1, Name ="Wall-E"
-                },
-                new Movie
-                {
-                    Id = 2,
-                    Name ="IT Follows"
-                }
-            };
-        }            
+        //private IEnumerable<Movie> getMovies()
+        //{
+        //    return _context.Movies;
+        //    //return new List<Movie>
+        //    //{
+        //    //    new Movie
+        //    //    {
+        //    //        Id =1, Name ="Wall-E"
+        //    //    },
+        //    //    new Movie
+        //    //    {
+        //    //        Id = 2,
+        //    //        Name ="IT Follows"
+        //    //    }
+        //    //};
+        //}            
     }
 }

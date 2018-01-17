@@ -26,7 +26,7 @@ namespace moviemall.Controllers
 
         public ActionResult Index()
         {
-            var customerInIndex = _context.customers.Include(x => x.MembershipType).ToList();
+            var customerInIndex = _context.Customers.Include(x => x.MembershipType).ToList();
             return View(customerInIndex);
         }
 
@@ -54,7 +54,7 @@ namespace moviemall.Controllers
 
         public ActionResult Details(int ID)
         {
-            var customerInDetails = _context.customers.Include(x => x.MembershipType).SingleOrDefault(c => c.Id == ID);
+            var customerInDetails = _context.Customers.Include(x => x.MembershipType).SingleOrDefault(c => c.Id == ID);
 
 
             if (customerInDetails != null)

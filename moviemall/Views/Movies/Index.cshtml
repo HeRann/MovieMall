@@ -16,6 +16,9 @@
             <th>
                 @controllerName
             </th>
+            <th>
+                Genre
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +26,10 @@
         {
         <tr>
             <td>
-                @m.Name
+                @Html.ActionLink(m.Name, "Details", "Movies")
+            </td>
+            <td>
+                @m.MovieGenre.GenreName
             </td>
         </tr>
         }
