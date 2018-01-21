@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace moviemall.Models
 {
@@ -12,9 +13,11 @@ namespace moviemall.Models
 
         public MovieGenre MovieGenre { get; set; }
         public int MovieGenreId { get; set; }
-
+        [Required]
         public DateTime ReleaseDate { get; set; }
+        [Required]
         public DateTime DateAdded { get; set; }
+        [Required]
         public int NumberInStock { get; set; }
     }
 

@@ -51,6 +51,13 @@ namespace moviemall.Controllers
             return View(moviesInIndex);
         }
 
+
+        public ActionResult Details(int ID)
+        {
+            var moviesInDetails = _context.Movies.Include(m => m.MovieGenre).SingleOrDefault(x => x.Id == ID);
+            
+            return View(moviesInDetails);
+        }
         //private IEnumerable<Movie> getMovies()
         //{
         //    return _context.Movies;
