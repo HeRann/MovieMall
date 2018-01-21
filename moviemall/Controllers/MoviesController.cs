@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using moviemall.Models;
 using System.Data.Entity;
-//using moviemall.ViewModel;
+using moviemall.ViewModel;
 
 namespace moviemall.Controllers
 {
@@ -74,5 +74,23 @@ namespace moviemall.Controllers
         //    //    }
         //    //};
         //}            
+
+        public ActionResult New()
+        {
+            var movieInNew = _context.MovieGenres.ToList();
+            var viewModel = new NewMovieViewModel();
+            viewModel.MovieGenre = movieInNew;
+            return View(viewModel);
+        }
+
+        //public ActionResult New()
+        //{
+        //    var customerInNew = _context.MembershipTypes.ToList();
+        //    var viewModel = new NewCustomerViewModel();
+        //    viewModel.MembershipTypes = customerInNew;
+        //    return View("CustomerForm", viewModel);
+        //}
+
+
     }
 }

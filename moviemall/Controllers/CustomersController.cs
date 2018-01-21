@@ -74,9 +74,47 @@ namespace moviemall.Controllers
             var customerInNew = _context.MembershipTypes.ToList();
             var viewModel = new NewCustomerViewModel();
             viewModel.MembershipTypes = customerInNew;
-            return View(viewModel);
+            return View("CustomerForm",viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == customer.Id);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index","Customers");
+        }
+
+        public ActionResult Edit(int Id)
+        {
+             var customerInEdit = _context.Customers.SingleOrDefault(c => c.Id == Id);
+            //if (customerInEdit != null)
+            //{
+            var viewModel = new NewCustomerViewModel();
+                viewModel.Customer = customerInEdit;
+                viewModel.MembershipTypes = _context.MembershipTypes.ToList();                 
+
+                return View("CustomerForm",viewModel);
+            //}
+            //else
+            //{
+            //    return HttpNotFound();
+            //}
+        }
     }
 
     //{
