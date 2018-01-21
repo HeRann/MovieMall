@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using moviemall.Models;
 using System.Data.Entity;
+using moviemall.ViewModel;
 
 
 namespace moviemall.Controllers
@@ -66,6 +67,14 @@ namespace moviemall.Controllers
                 return HttpNotFound();
             }
             
+        }
+
+        public ActionResult New()
+        {
+            var customerInNew = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel();
+            viewModel.MembershipTypes = customerInNew;
+            return View(viewModel);
         }
 
     }
