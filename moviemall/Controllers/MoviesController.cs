@@ -75,22 +75,54 @@ namespace moviemall.Controllers
         //    //};
         //}            
 
-        public ActionResult New()
+
+        public ActionResult New(int? Id)
         {
             var movieInNew = _context.MovieGenres.ToList();
+            var movieInEdit = _context.Movies.SingleOrDefault(c => c.Id == Id);
             var viewModel = new NewMovieViewModel();
-            viewModel.MovieGenre = movieInNew;
-            return View(viewModel);
-        }
+            if (Id == null)
+            {
 
+                viewModel.MovieGenre = movieInNew;
+                ViewData["typeofUpdate"] = "New";
+                return View("New",viewModel);
+            }
+            else
+            {
+                viewModel.Movie = movieInEdit;
+                viewModel.MovieGenre = _context.MovieGenres.ToList();
+                ViewData["typeofUpdate"] = "Edit";
+                return View("New",viewModel);
+            }
+        }
+        ////Reduced the code by above
         //public ActionResult New()
         //{
-        //    var customerInNew = _context.MembershipTypes.ToList();
-        //    var viewModel = new NewCustomerViewModel();
-        //    viewModel.MembershipTypes = customerInNew;
-        //    return View("CustomerForm", viewModel);
+        //    var movieInNew = _context.MovieGenres.ToList();
+        //    var viewModel = new NewMovieViewModel();
+        //    viewModel.MovieGenre = movieInNew;
+        //    ViewData["typeofUpdate"] = "New";
+        //    return View(viewModel);
+        //}
+        //public ActionResult Edit(int Id)
+        //{
+        //    var movieInEdit = _context.Movies.SingleOrDefault(c => c.Id == Id);
+        //    var viewModel = new NewMovieViewModel();
+        //    viewModel.Movie = movieInEdit;
+        //    viewModel.MovieGenre = _context.MovieGenres.ToList();
+        //    ViewData["typeofUpdate"] = "Edit";
+        //    return View(viewModel);
         //}
 
-
     }
+    //public ActionResult New()
+    //{
+    //    var customerInNew = _context.MembershipTypes.ToList();
+    //    var viewModel = new NewCustomerViewModel();
+    //    viewModel.MembershipTypes = customerInNew;
+    //    return View("CustomerForm", viewModel);
+    //}
+
+
 }

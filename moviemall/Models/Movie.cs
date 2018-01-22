@@ -13,8 +13,6 @@ namespace moviemall.Models
         //[Required]
         public string Name { get; set; }
 
-        
-    
         public MovieGenre MovieGenre { get; set; }
 
         [Display(Name = "Genre")]

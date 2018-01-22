@@ -4,8 +4,9 @@
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>New Movies</h2>
+<h2>
+    @ViewData["typeOfUpdate"] Movie
+</h2>
 
 @using (Html.BeginForm("Save", "Movies"))
 {
@@ -25,10 +26,9 @@
         @Html.LabelFor(m => m.Movie.NumberInStock):
         @Html.TextBoxFor(m => m.Movie.NumberInStock, new {@class ="form-control"})
     </div>
-    
-    //Name
-    //ReleaseData
-    //Genre
-    //No in stock
+    <button class="btn btn-primary" type="submit">
+        Save
+    </button>
+
 }
 
