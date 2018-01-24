@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using moviemall.Models;
 using System.Data.Entity;
 using moviemall.ViewModel;
+using System.Data.Entity.Validation;
 
 namespace moviemall.Controllers
 {
@@ -54,7 +55,7 @@ namespace moviemall.Controllers
 
         public ActionResult Details(int ID)
         {
-            var moviesInDetails = _context.Movies.Include(m => m.MovieGenre).SingleOrDefault(x => x.Id == ID);
+            var moviesInDetails = _context.Movies.Include(m => m.MovieGenre).SingleOrDefault(m => m.Id == ID);
             
             return View(moviesInDetails);
         }
@@ -76,53 +77,54 @@ namespace moviemall.Controllers
         //}            
 
 
-        public ActionResult New(int? Id)
+        public ActionResult New()
         {
             var movieInNew = _context.MovieGenres.ToList();
-            var movieInEdit = _context.Movies.SingleOrDefault(c => c.Id == Id);
             var viewModel = new NewMovieViewModel();
-            if (Id == null)
-            {
-
+            //if (Id == null)
+            //{
                 viewModel.MovieGenre = movieInNew;
                 ViewData["typeofUpdate"] = "New";
-                return View("New",viewModel);
+                return View("MovieForm", viewModel);
+            //}
+        }
+        public ActionResult Edit(int Id)
+        {
+            var movieInEdit = _context.Movies.SingleOrDefault(c => c.Id == Id);
+            if (movieInEdit == null)
+            {
+                return HttpNotFound();
             }
             else
             {
+                var viewModel = new NewMovieViewModel();
                 viewModel.Movie = movieInEdit;
                 viewModel.MovieGenre = _context.MovieGenres.ToList();
                 ViewData["typeofUpdate"] = "Edit";
-                return View("New",viewModel);
+                return View("MovieForm", viewModel);
             }
         }
-        ////Reduced the code by above
-        //public ActionResult New()
-        //{
-        //    var movieInNew = _context.MovieGenres.ToList();
-        //    var viewModel = new NewMovieViewModel();
-        //    viewModel.MovieGenre = movieInNew;
-        //    ViewData["typeofUpdate"] = "New";
-        //    return View(viewModel);
-        //}
-        //public ActionResult Edit(int Id)
-        //{
-        //    var movieInEdit = _context.Movies.SingleOrDefault(c => c.Id == Id);
-        //    var viewModel = new NewMovieViewModel();
-        //    viewModel.Movie = movieInEdit;
-        //    viewModel.MovieGenre = _context.MovieGenres.ToList();
-        //    ViewData["typeofUpdate"] = "Edit";
-        //    return View(viewModel);
-        //}
 
-    }
-    //public ActionResult New()
-    //{
-    //    var customerInNew = _context.MembershipTypes.ToList();
-    //    var viewModel = new NewCustomerViewModel();
-    //    viewModel.MembershipTypes = customerInNew;
-    //    return View("CustomerForm", viewModel);
-    //}
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                 movie.DateAdded = DateTime.Now.Date;
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.SingleOrDefault(c => c.Id == movie.Id);
 
-
+                movieInDb.Name = movie.Name;
+                movieInDb.ReleaseDate = movie.ReleaseDate.Date;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.MovieGenreId = movie.MovieGenreId;
+             
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index","Movies");
+        }
+      }
 }
