@@ -83,6 +83,9 @@ namespace moviemall.Controllers
             var viewModel = new NewMovieViewModel();
             //if (Id == null)
             //{
+            viewModel.Movie = new Movie();
+            viewModel.MovieGenre = movieInNew;
+
                 viewModel.MovieGenre = movieInNew;
                 ViewData["typeofUpdate"] = "New";
                 return View("MovieForm", viewModel);
@@ -108,6 +111,13 @@ namespace moviemall.Controllers
         [HttpPost]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new NewMovieViewModel();
+                viewModel.Movie = movie;
+                viewModel.MovieGenre = _context.MovieGenres.ToList();
+                return View("MovieForm",viewModel);
+            }
             if (movie.Id == 0)
             {
                  movie.DateAdded = DateTime.Now.Date;

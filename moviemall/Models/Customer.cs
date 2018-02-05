@@ -10,7 +10,7 @@ namespace moviemall.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please Enter Customer Name")]
         [StringLength(255)]
         public string Name { get; set; }
 
@@ -22,7 +22,9 @@ namespace moviemall.Models
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
 
+        //[Required]
         [Display(Name = "Date of Birth")]
+        [AgeValidationForMembership]
         public DateTime? Birthdate { get; set; }
     }
 }
