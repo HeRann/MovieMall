@@ -83,7 +83,7 @@ namespace moviemall.Controllers
             var viewModel = new NewMovieViewModel();
             //if (Id == null)
             //{
-            viewModel.Movie = new Movie();
+           // viewModel.Movie = new Movie();
             viewModel.MovieGenre = movieInNew;
 
                 viewModel.MovieGenre = movieInNew;
